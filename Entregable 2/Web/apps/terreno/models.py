@@ -1,6 +1,6 @@
 from django.db import models
 from apps.general.models import Municipio, TipoPatron, Especie, Robot
-from apps.usuario.models import Donador
+from apps.financiacion.models import Donacion
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -40,9 +40,9 @@ class Siembra(models.Model):
     altitud = models.FloatField(max_length=200, blank=True, null=True)
     ph = models.CharField(max_length=5, blank=True, null=True)
     url_video = models.CharField(max_length=200, blank=True, null=True)
-    punto_siembra = models.ForeignKey(PuntoSiembra, blank=False, null=False)
+    punto_siembra = models.OneToOneField( PuntoSiembra, on_delete=models.CASCADE, primary_key=True )
     robot = models.ForeignKey(Robot, blank=True, null=True)
-    donacion = models.ForeignKey(Donador, blank=False, null=False)
+    donacion = models.ForeignKey(Donacion, blank=False, null=False)
 
     class Meta:
         db_table = 'terreno_siembra'

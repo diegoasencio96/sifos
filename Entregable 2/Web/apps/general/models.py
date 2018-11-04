@@ -7,8 +7,8 @@ ESTADOS = {
 # Create your models here.
 class Municipio(models.Model):
     nombre = models.CharField(max_length=150, blank=True, null=True)
-    codigo = models.CharField(max_length=100, blank=True, null=True)
-    coordenadas = models.CharField(max_length=150, blank=True, null=True)
+    longitd = models.CharField(max_length=150, blank=True, null=True)
+    latitud = models.CharField(max_length=150, blank=True, null=True)
 
     class Meta:
         db_table = 'general_municipio'
