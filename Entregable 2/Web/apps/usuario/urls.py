@@ -18,6 +18,5 @@ from django.contrib import admin
 from apps.usuario.views import perfil
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^perfil/', perfil, name="usuario_perfil"),
 ]
