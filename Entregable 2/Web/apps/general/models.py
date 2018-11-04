@@ -36,7 +36,19 @@ class Especie(models.Model):
 
     def save(self, *args, **kwargs):
         self.nombre = self.nombre.upper()
-        super(Municipio, self).save(*args, **kwargs)
+        super(Especie, self).save(*args, **kwargs)
+
+# Create your models here.
+class EspecieMunicipio(models.Model):
+    especie = models.ForeignKey(Especie, blank=False, null=False)
+    municipio = models.ForeignKey(Municipio, blank=False, null=False)
+
+    class Meta:
+        db_table = 'general_especie_municipio'
+
+    def __str__(self):
+        return "{0}".format(self.nombre)
+
 
 # Create your models here.
 class TipoPatron(models.Model):
