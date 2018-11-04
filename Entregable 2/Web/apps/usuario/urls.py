@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from SIFO.views import login
+from apps.usuario.views import perfil
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^perfil/', perfil, name="usuario_perfil"),
 ]

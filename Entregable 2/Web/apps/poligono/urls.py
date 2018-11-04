@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from SIFO.views import login
+from apps.poligono.views import index, registro
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^seguimiento', index, name='poligono_seguimiento'),
+    url(r'^registro', registro, name='poligono_registro'),
 ]

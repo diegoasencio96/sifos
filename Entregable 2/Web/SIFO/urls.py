@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from SIFO.views import Login
+from SIFO.views import login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', Login.as_view(), name="user_login"),
-    url(r'^poligono/', include('apps.poligono.urls')),
+    url(r'^$', login, name="user_login"),
+    url(r'^poligono/', include('apps.poligono.urls'), name="poligono"),
     url(r'^usuario/', include('apps.usuario.urls')),
 ]
