@@ -1,0 +1,1 @@
+[{"model": "general.municipio", "pk": 2, "fields": {"nombre": "Villavicencio", "longitd": "-73.6266", "latitud": "4.142"}}, {"model": "general.municipio", "pk": 3, "fields": {"nombre": "Abichuri", "longitd": "-73.4895", "latitud": "3.35125 "}}]

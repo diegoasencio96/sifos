@@ -1,0 +1,1 @@
+[{"model": "general.tipopatron", "pk": 1, "fields": {"nombre": "Cuadrado", "figura": "static/general/img/", "distancia_interna": 1}}, {"model": "general.tipopatron", "pk": 2, "fields": {"nombre": "Tresbolillo", "figura": "static/general/img/", "distancia_interna": 2}}]
