@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PoligonoConfig(AppConfig):
-    name = 'poligono'
+    name = 'terreno'

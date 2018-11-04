@@ -20,6 +20,6 @@ from apps.usuario.views import login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', login, name="user_login"),
-    url(r'^poligono/', include('apps.poligono.urls'), name="poligono"),
+    url(r'^terreno/', include('apps.terreno.urls'), name="terreno"),
     url(r'^usuario/', include('apps.usuario.urls')),
 ]
