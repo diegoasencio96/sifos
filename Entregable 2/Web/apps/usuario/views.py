@@ -11,3 +11,6 @@ def login(request):
 
 def perfil(request):
     return render(request, 'usuario/perfil.html')
+
+def registro(request):
+    return render(request, 'register.html')
