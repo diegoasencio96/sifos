@@ -57,6 +57,6 @@ target/
 *.log
 *.pot
 *.pyc
-Entregable\ 2/Web/.idea/*
+**/.idea/
 Entregable\ 2/Web/db.sqlite3
-Entregable\ 2/Web/settings.py
+**/settings.py

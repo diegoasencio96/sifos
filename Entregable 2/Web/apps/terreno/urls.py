@@ -18,6 +18,6 @@ from django.contrib import admin
 from apps.terreno.views import index, registro
 
 urlpatterns = [
-    url(r'^seguimiento', index, name='poligono_seguimiento'),
-    url(r'^registro', registro, name='poligono_registro'),
+    url(r'^seguimiento', index, name='terreno_seguimiento'),
+    url(r'^registro', registro, name='terreno_registro'),
 ]
