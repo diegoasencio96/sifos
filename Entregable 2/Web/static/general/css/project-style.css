@@ -1,0 +1,40 @@
+/******************* Style Login ***********************/
+.background-style{
+    background-image: url('https://c.pxhere.com/photos/cb/a2/cornfield_corn_field_arable_young_plants_frisch_agriculture_crops-630468.jpg!d');
+    background-size: cover;
+}
+
+.height-content{
+    height: 100vh;
+}
+
+.background-footer{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.width-pass-section{
+    width: 100%;
+}
+
+
+/******************* Style seguimiento_terreno ***********************/
+.user-a{
+    background-color: rgb(100, 100, 100);
+    border-color: transparent;
+}
+
+.table-seguimiento{
+    border-radius: 5px;
+    box-shadow: 0 0 4px 0px black;
+}
+
+.color-head-table{
+    background-color: #fbf8d4a6;
+}
+
+
+/******************* Style base html ***********************/
+.central-height-back{
+    height: 85vh;
+    background-color: rgba(255, 255, 255, 0.9);
+}
