@@ -37,8 +37,8 @@ var registrarTerreno = function(){
 
             google.maps.event.addListener(gestorDibujo, 'polygoncomplete', function(poligono) {                                
                 registrarTerreno.poligono = poligono;
-                $("#borrarPoligonoBtn").show();
-                var xx = google.maps.geometry.spherical.computeArea(poligono.getPath());
+                $("#borrarPoligonoBtn").show();   
+                registrarTerreno.dibujarElementosPoligono();             
 
                 gestorDibujo.setOptions({
                     drawingControl: false
@@ -58,6 +58,19 @@ var registrarTerreno = function(){
             
             $("#dibujarPoligonoBtn").show();
             $("#borrarPoligonoBtn").hide();
+        },
+
+        dibujarElementosPoligono: function(){
+            if (this.poligono != null){
+                var area = google.maps.geometry.spherical.computeArea(this.poligono.getPath());
+                var perimetro = google.maps.geometry.spherical.computeLength(this.poligono.getPath());
+                $("#areaPoligonoLbl").html(" " + area.toFixed() + " metros cuadrados (?)");
+                $("#perimetroPoligonoLbl").html(" " + perimetro.toFixed() + " metros cuadrados (?)");
+            }
+        },
+
+        registrarPoligono: function(){
+            
         }
     }
 }();

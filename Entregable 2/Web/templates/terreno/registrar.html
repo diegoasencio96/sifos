@@ -26,16 +26,19 @@
                     <div class="col-md-12">
                         <div class="list-group">
                             <div class="list-group-item">
-                                <label>Área: </label>
+                                <label>Área: </label> <label id="areaPoligonoLbl"></label>
                             </div>
                             <div class="list-group-item">
-                                <label>Perimetro: </label>
+                                <label>Perimetro: </label> <label id="perimetroPoligonoLbl"></label>
                             </div>
                             <div class="list-group-item">
                                 <label>Ocupación: 0%</label>
                             </div>
                         </div>
                     </div>
+                    
+                    <hr />
+                    <button id="registrarPoligonoBtn" type="button" class="btn btn-primary col-md-12" onclick="registrarTerreno.borrarPoligono()">Registrar</button>
                 </div>
             </div>
         </div>
@@ -43,6 +46,6 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="https://maps.googleapis.com/maps/api/js?key=XXXXXX&libraries=drawing&callback=registrarTerreno.init" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD9r4hThCDftrhrN9z0CYSf_w0-ysTt_8&libraries=drawing&callback=registrarTerreno.init" async defer></script>
     <script src="{% static 'terreno/js/registrar.js' %}"></script>
 {% endblock %}
