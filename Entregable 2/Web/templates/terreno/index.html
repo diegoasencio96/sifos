@@ -5,14 +5,14 @@
 {% block content %}
 
     <div>
-        <a title="Usuario" class="btn btn-secondary float-right" style="background-color: rgb(100, 100, 100); border-color: transparent" href="/usuario/perfil"><i class='fas fa-user' style='font-size:20px'></i></a>
+        <a title="Usuario" class="btn btn-secondary float-right user-a" href="/usuario/perfil"><i class='fas fa-user' style='font-size:20px'></i></a>
     </div>
     <img class="img-responsive mt-1 float-left" src="{%  static 'general/img/logoSIFO.png' %}" alt="" width="130" height="" />
     <div class="container mt-3">
       <div class="mt-4 mb-3"><h2>Progreso de siembra</h2></div>
-      <table class="table table-responsive table-bordered" style="border-radius: 5px; box-shadow: 0 0 4px 0px black;">
+      <table class="table table-responsive table-bordered table-seguimiento">
         <thead>
-          <tr class="text-center" style="background-color: #fbf8d4a6;">
+          <tr class="text-center color-head-table">
             <th>Fecha</th>
             <th>Resumen</th>
             <th>Área (Km<sup>2</sup>)</th>
@@ -49,9 +49,9 @@
               <!-- Columna acciones -->
             <td class="d-lg-inline-block">
                 <!-- Botón editar terreno -->
-                <a style="margin: 1px;" class="btn btn-info" href="#" id="btn_editar_terreno"><i class="fa fa-pencil" style="font-size:10px"></i></a>
+                <a class="btn btn-info m-1" href="#" id="btn_editar_terreno"><i class="fa fa-pencil" style="font-size:10px"></i></a>
                 <!-- Botón eliminar terreno -->
-                <a style="margin: 1px;" class="btn btn-info" href="#" id="btn_eliminar_terreno"><i class='fas fa-trash-alt' style='font-size:10px'></i></a>
+                <a class="btn btn-info m-1" href="#" id="btn_eliminar_terreno"><i class='fas fa-trash-alt' style='font-size:10px'></i></a>
             </td>
           </tr>
         {%endfor%}
