@@ -27,11 +27,13 @@
                 <div class="col-sm-9 col-md-10 m-auto">
                     <div class="row justify-content-center"> </div>
                     <div>
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
                         <!-- Formulario de ingreso al sistema -->
-                        <form class="form-signin" action="terreno/seguimiento"
-                              method="post"
-                              enctype="multipart/form-data"
-                              id="form-login">
+                         <form method="post" role="form">
                             <div id="error-all"></div>
                             <div class="dropdown-content animated fadeIn" id="login-elements">
                                 <div class="input-group mb-1">
