@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'general/css/project-style.css' %}">
     <script type="text/javascript" src="{% static 'general/js/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'general/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'general/js/sweetalert.js' %}"></script>
     <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}" />
     <link href="{% static 'signin.css' %}" rel="stylesheet">
 </head>
@@ -75,7 +76,7 @@
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <!-- boton envío a correo electrónico de contraseña -->
-                                <button type="button" class="btn btn-primary btn-danger">Enviar</button>
+                                <button id="sendBtn" type="button" onclick="sendMail()" class="btn btn-primary btn-danger">Enviar</button>
                               </div>
                             </div>
                           </div>
@@ -88,6 +89,36 @@
     </div>
 </div>
 
+<script>
+function sendMail(){
+       $.ajax({
+        url: 'usuario/validate_email',
+        data: {
+          'email': $("#id_recordarCorreo").val()
+        },
+        dataType: 'json',
+        success: function (data) {
+
+          if (data.existe == 0) {
+            swal({
+              type: 'error',
+              title: 'Error...',
+              text: 'No existe un usuario con el correo electrónico ingresado.',
+              footer: ''
+            })
+          }
+          else{
+             swal({
+              type: 'success',
+              title: 'Genial...',
+              text: 'Se ha enviado su contraseña al correo electrónico ingresado.',
+              footer: ''
+            })
+          }
+        }
+      });
+ };
+</script>
 <!--<footer class="fixed-bottom">
     <div class="row justify-content-start ">
         <div class="col">

@@ -13,8 +13,10 @@ from django.views.generic import FormView, RedirectView
 # Authentication imports
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from apps.usuario.models import Donador
 
 from django.core.urlresolvers import reverse_lazy
+from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 
 
@@ -52,3 +54,10 @@ class LoginRequiredMixin(object):
 
 
 
+
+def validate_email(request):
+    email = request.GET.get('email', None)
+    data = {
+        'existe': Donador.objects.filter(correo_electronico=email).exists()
+    }
+    return JsonResponse(data)
