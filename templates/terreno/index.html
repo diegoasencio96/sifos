@@ -27,24 +27,25 @@
             <tbody>
             {% for abc in obj %}
                 <tr class="text-center">
-                    <!-- Columna fecha -->
-                    <td><input type="date" disabled></td>
-                    <!-- Columna resumen -->
-                    <td><input type="text" disabled></td>
-                    <!-- Columna area -->
-                    <td>{{ abc.area }}</td>
-                    <!-- Columna perimetro -->
-                    <td><input type="text" disabled></td>
-                    <!-- Columna avance -->
+                      <!-- Columna fecha -->
+                    <td>{{ abc.fecha|date:'Y-m-d'}}</td>
+                      <!-- Columna resumen -->
+                   <td>{{ abc.nombre}}</td>
+                      <!-- Columna area -->
+                    <td>{{ abc.area}}</td>
+                      <!-- Columna perimetro -->
+                   <td>{{ abc.perimetro}}</td>
+                      <!-- Columna avance -->
                     <td><input type="number" disabled></td>
-                    <!-- Columna número de especies -->
-                    <td><input type="number" disabled></td>
-                    <!-- Columna tipo de siembra -->
-                    <td>{{ abc.tipo_patron }}</td>
-                    <!-- Columna cantidad de donaciones -->
-                    <td><input type="number" disabled></td>
-                    <!-- Columna valor donaciones -->
-                    <td><input type="number" disabled></td>
+                      <!-- Columna número de especies -->
+                    <td>{{ abc.especie}}</td>
+                      <!-- Columna tipo de siembra -->
+                    <td>{{ abc.tipo_patron}}</td>
+                      <!-- Columna cantidad de donaciones -->
+                    <td>{{ abc.cant_donadores}}</td>
+                      <!-- Columna valor donaciones -->
+                    <td>{{ abc.valor_donacion}}</td>
+
                     <!-- Columna acciones -->
                     <td class="d-lg-inline-block">
                         <!-- Botón editar terreno -->
