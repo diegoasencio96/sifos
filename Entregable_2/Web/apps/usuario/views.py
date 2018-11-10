@@ -52,12 +52,8 @@ class LoginRequiredMixin(object):
         else:
             return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
 
-
-
-
 ## Método que obtiene el detalle de usuario logueado
 def perfil(request):
-    print("ENTRA ACA")
     usuario = User.objects.filter(username=request.user).first()
     return render(request, "usuario/perfil.html", {"usuario": usuario})
 
