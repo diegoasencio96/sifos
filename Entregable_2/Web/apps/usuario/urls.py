@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from apps.usuario.views import perfil, validate_email
+from apps.usuario.views import perfil, validate_email, send_email
 
 urlpatterns = [
     url(r'^perfil/', perfil, name="usuario_perfil"),
     url(r'^validate_email/$', validate_email, name='validate_email'),
+    url(r'^send_email/$', send_email, name='send_email'),
 ]

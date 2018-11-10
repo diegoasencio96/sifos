@@ -127,3 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'AKIAJZHI3U53P2BDH56A'
+EMAIL_HOST_PASSWORD = 'AsUxAQY3GK54wt8hOFGg+kUIbB8vNiqhuRH8rVFcKHwi'
+EMAIL_USE_TLS = True
