@@ -114,6 +114,32 @@ function sendMail(){
               text: 'Se ha enviado su contraseña al correo electrónico ingresado.',
               footer: ''
             })
+                $.ajax({
+                url: 'usuario/send_email',
+                data: {
+                  'email': $("#id_recordarCorreo").val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                if(data.error == "no"){
+                        swal({
+                          type: 'success',
+                          title: 'Genial...',
+                          text: data.message,
+                          footer: ''
+                        })
+                    }
+                    else{
+                        swal({
+                          type: 'error',
+                          title: 'Error...',
+                          text: data.message,
+                          footer: ''
+                        })
+                    }
+                }
+
+                });
           }
         }
       });
