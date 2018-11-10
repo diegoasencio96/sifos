@@ -11,15 +11,13 @@ from django.shortcuts import render
 from django.views.generic import FormView, RedirectView
 
 # Authentication imports
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm
-from apps.usuario.models import Donador
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-
+from django.core.mail import BadHeaderError, send_mail
 
 class LoginView(FormView):
     form_class = AuthenticationForm
@@ -56,10 +54,49 @@ class LoginRequiredMixin(object):
 def perfil(request):
     usuario = User.objects.filter(username=request.user).first()
     return render(request, "usuario/perfil.html", {"usuario": usuario})
+
 def validate_email(request):
     email = request.GET.get('email', None)
     data = {
         'existe': User.objects.filter(email=email).exists()
-            #Donador.objects.filter(correo_electronico=email).exists()
     }
     return JsonResponse(data)
+
+
+def send_email(request):
+    #Asigna una nueva contraseña para ser enviada al correo
+    email_to = request.GET.get('email', None)
+    print(email_to)
+    usuario = User.objects.get(email=email_to)
+    new_pswrd = 'nuevo_pswrd'
+    usuario.set_password(new_pswrd)
+    #update_session_auth_hash(request, usuario)
+    usuario.save()
+
+    #Asigna los valores del correo electrónico
+
+    subject = 'Recuperación de contraseña'
+    message = 'Su nueva contraseña es: '+new_pswrd
+    from_email = 'obaquero@gmail.com'
+
+    #Envio de correo electrónico
+    if subject and message and from_email:
+        try:
+            send_mail(subject, message, from_email, [email_to])
+            data = {
+                'error': "no",
+                'message': "Se envió una nueva contraseña al correo electrónico "+ email_to
+            }
+            return JsonResponse(data)
+        except BadHeaderError:
+            data = {
+                'error': "si",
+                'message': "Se produjo un error durante el envío del correo electrónico."
+            }
+            return JsonResponse(data)
+    else:
+        data = {
+            'error': "si",
+            'message': "Por favor verifique el correo electrónico ingresado e intentelo nuevamente."
+        }
+        return JsonResponse(data)
