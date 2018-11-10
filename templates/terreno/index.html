@@ -3,6 +3,10 @@
 
 {% block title %}Seguimiento de terrenos{% endblock %}
 {% block content %}
+<div class="card card-primary">
+    <div class="card-header"><img class="img-responsive mt-1 float-left mr-2" src="{% static 'general/img/logoSIFO.png' %}" alt="" width="80" height=""/><p class="ml-4"><h2>Progreso de siembra</h2></p></div>
+        <div class=" center-block">
+            <table class="table table-responsive table-bordered table-seguimiento mt-4" style="width: 80%; margin: 5px auto;">
 
 
     <img class="img-responsive mt-1 float-left" src="{% static 'general/img/logoSIFO.png' %}" alt="" width="130"
@@ -62,5 +66,7 @@
         <a class="btn btn-danger float-right mb-4" href="/terreno/registro"><i class='fas fa-hammer'
                                                                                style='font-size:20px'></i> Crear terreno</a>
     </div>
-
+   </div>
+    </div>
+</div>
 {% endblock %}
