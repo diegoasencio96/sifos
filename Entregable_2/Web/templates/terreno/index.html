@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Seguimiento de terrenos{% endblock %}
+{% block content %}
+
+
+    <img class="img-responsive mt-1 float-left" src="{% static 'general/img/logoSIFO.png' %}" alt="" width="130"
+         height=""/>
+    <div class="container mt-3">
+        <div class="mt-4 mb-3"><h2>Progreso de siembra</h2></div>
+        <table class="table table-responsive table-bordered table-seguimiento">
+            <thead>
+            <tr class="text-center color-head-table">
+                <th>Fecha</th>
+                <th>Resumen</th>
+                <th>Área (Km<sup>2</sup>)</th>
+                <th>Perímetro (Km)</th>
+                <th>Avance (%)</th>
+                <th>Número de especies</th>
+                <th>Tipo de siembra</th>
+                <th>Cantidad de donaciones</th>
+                <th>Valor donaciones</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for abc in obj %}
+                <tr class="text-center">
+                    <!-- Columna fecha -->
+                    <td><input type="date" disabled></td>
+                    <!-- Columna resumen -->
+                    <td><input type="text" disabled></td>
+                    <!-- Columna area -->
+                    <td>{{ abc.area }}</td>
+                    <!-- Columna perimetro -->
+                    <td><input type="text" disabled></td>
+                    <!-- Columna avance -->
+                    <td><input type="number" disabled></td>
+                    <!-- Columna número de especies -->
+                    <td><input type="number" disabled></td>
+                    <!-- Columna tipo de siembra -->
+                    <td>{{ abc.tipo_patron }}</td>
+                    <!-- Columna cantidad de donaciones -->
+                    <td><input type="number" disabled></td>
+                    <!-- Columna valor donaciones -->
+                    <td><input type="number" disabled></td>
+                    <!-- Columna acciones -->
+                    <td class="d-lg-inline-block">
+                        <!-- Botón editar terreno -->
+                        <a class="btn btn-info m-1" href="#" id="btn_editar_terreno"><i class="fa fa-pencil"
+                                                                                        style="font-size:10px"></i></a>
+                        <!-- Botón eliminar terreno -->
+                        <a class="btn btn-info m-1" href="#" id="btn_eliminar_terreno"><i class='fas fa-trash-alt'
+                                                                                          style='font-size:10px'></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-danger float-right mb-4" href="/terreno/registro"><i class='fas fa-hammer'
+                                                                               style='font-size:20px'></i> Crear terreno</a>
+    </div>
+
+{% endblock %}
