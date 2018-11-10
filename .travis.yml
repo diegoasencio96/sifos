@@ -1,0 +1,16 @@
+language: python
+python:
+- "3.6"
+# setup environment
+services: postgresql
+env:
+- DJANGO_VERSION=1.11.5
+# install dependencies
+install:
+- pip install -r Entregable_2/Web/requirements.txt
+# run test scripts
+
+before_script:
+  - psql -c "CREATE DATABASE mydb;" -U postgres
+script:
+- python Entregable_2/Web/manage.py test 
