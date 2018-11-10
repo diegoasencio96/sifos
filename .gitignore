@@ -32,19 +32,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 *.egg-info/
-.installed.cfg
 *.egg
 
 # PyInstaller
@@ -69,12 +57,6 @@ target/
 *.log
 *.pot
 *.pyc
-__pycache__/
-local_settings.py
-
-obj/
-env/
-.idea/
-.env
-db.sqlite3
-settings.py
+**/.idea/
+Entregable\ 2/Web/db.sqlite3
+**/settings.py
