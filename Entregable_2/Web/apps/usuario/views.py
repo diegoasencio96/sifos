@@ -18,6 +18,7 @@ from apps.usuario.models import Donador
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 
 class LoginView(FormView):
@@ -54,6 +55,11 @@ class LoginRequiredMixin(object):
 
 
 
+## Método que obtiene el detalle de usuario logueado
+def perfil(request):
+    print("ENTRA ACA")
+    usuario = User.objects.filter(username=request.user).first()
+    return render(request, "usuario/perfil.html", {"usuario": usuario})
 
 def validate_email(request):
     email = request.GET.get('email', None)
