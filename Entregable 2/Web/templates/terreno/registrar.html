@@ -5,15 +5,15 @@
 {% block content %}
     <div class="bd-callout bd-callout-info">
         <div class="card card-primary">
-            <div class="card-header">Selección de poligono</div>
+            <div class="card-header">Selección de polígono</div>
 
             <div class="card-body row">
-                <div id="mapsDiv" class="col-md-7" style="height:500px"></div>
+                <div id="mapsDiv" class="col-md-7 mt-2" style="height:500px"></div>
 
                 <!--Detalle del poligono seleccionado-->
-                <div id="infoMapsDiv" class="col-md-5" style="height:500px">
-                    <button id="dibujarPoligonoBtn" type="button" class="btn btn-info col-md-12" onclick="registrarTerreno.dibujarPoligono()">Dibujar poligono</button>
-                    <button id="borrarPoligonoBtn" type="button" class="btn btn-info col-md-12" onclick="registrarTerreno.borrarPoligono()" style="display:none">Borrar poligono</button>
+                <div id="infoMapsDiv" class="col-md-5 mt-2" style="height:500px">
+                    <button id="dibujarPoligonoBtn" type="button" class="btn btn-info col-md-12" onclick="registrarTerreno.dibujarPoligono()">Dibujar polígono</button>
+                    <button id="borrarPoligonoBtn" type="button" class="btn btn-warning col-md-12" onclick="registrarTerreno.borrarPoligono()" style="display:none">Borrar polígono</button>
 
                     <hr />
 
@@ -38,7 +38,7 @@
                     </div>
                     
                     <hr />
-                    <button id="registrarPoligonoBtn" type="button" class="btn btn-primary col-md-12" onclick="registrarTerreno.borrarPoligono()">Registrar</button>
+                    <button id="registrarPoligonoBtn" type="button" class="btn btn-primary col-md-12" onclick="registrarTerreno.registrarPoligono()">Registrar</button>
                 </div>
             </div>
         </div>

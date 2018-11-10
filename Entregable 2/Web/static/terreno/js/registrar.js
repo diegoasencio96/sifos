@@ -1,5 +1,4 @@
 var registrarTerreno = function(){
-
     return {
         map : "",
         gestorDibujo: "",
@@ -7,19 +6,20 @@ var registrarTerreno = function(){
 
         init: function(){
             this.map = new google.maps.Map(document.getElementById('mapsDiv'), {
-                center: {lat: -34.397, lng: 150.644},
+                center: {lat: 4.1247567, lng: -73.6440795},
                 zoom: 8
               });
         },
 
-        dibujarPoligono: function(){
+        dibujarPoligono: function(){            
             if (this.map == undefined || this.map == ""){
                 alert("No fue posible obtener información del mapa");
                 return;
             }
-
-            gestorDibujo = new google.maps.drawing.DrawingManager({
-                drawingMode: google.maps.drawing.OverlayType.MARKER,
+            $("#borrarPoligonoBtn").show();   
+            $("#dibujarPoligonoBtn").hide();
+            registrarTerreno.gestorDibujo = new google.maps.drawing.DrawingManager({
+                drawingMode: google.maps.drawing.OverlayType.POLYGON,
                 drawingControl: true,
                 drawingControlOptions: {
                   position: google.maps.ControlPosition.TOP_CENTER,
@@ -35,18 +35,20 @@ var registrarTerreno = function(){
                 }
             });
 
-            google.maps.event.addListener(gestorDibujo, 'polygoncomplete', function(poligono) {                                
+            google.maps.event.addListener(registrarTerreno.gestorDibujo, 'polygoncomplete', function(poligono) {                                
                 registrarTerreno.poligono = poligono;
-                $("#borrarPoligonoBtn").show();   
+                
                 registrarTerreno.dibujarElementosPoligono();             
 
-                gestorDibujo.setOptions({
-                    drawingControl: false
+                registrarTerreno.gestorDibujo.setOptions({
+                    drawingControl: false          
                 });
+                registrarTerreno.gestorDibujo.setDrawingMode(null);
+
             });
             
-            gestorDibujo.setMap(this.map);
-            $("#dibujarPoligonoBtn").hide();
+            registrarTerreno.gestorDibujo.setMap(this.map);
+            
             
         },
 
@@ -58,6 +60,8 @@ var registrarTerreno = function(){
             
             $("#dibujarPoligonoBtn").show();
             $("#borrarPoligonoBtn").hide();
+            $("#areaPoligonoLbl").html("");
+            $("#perimetroPoligonoLbl").html("");
         },
 
         dibujarElementosPoligono: function(){
@@ -70,6 +74,20 @@ var registrarTerreno = function(){
         },
 
         registrarPoligono: function(){
+            if (this.poligono == null){                
+                alert("Debe seleccionar un polígono que represente el terreno");
+                return;
+            }
+            var nombre = $("#nombreTerrenoTxt").val();
+            if(nombre == ""){
+                alert("Agregue el nombre del terreno");
+                return;
+            }
+            
+            var data = {
+                points : registrarTerreno.poligono.getPath().getArray(),
+                name : nombre
+            };
             
         }
     }
