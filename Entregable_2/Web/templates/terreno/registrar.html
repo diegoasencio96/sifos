@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Crear nuevo terreno de siembra{% endblock %}
+{% block content %}
+    <div class="pt-2 bd-callout bd-callout-info">
+        <div class="card card-primary">
+            <div class="card-header">Selección de polígono</div>
+
+            <div class="card-body row">
+                <div id="mapsDiv" class="col-md-7 mt-2" style="height:500px"></div>
+
+                <!--Detalle del poligono seleccionado-->
+                <div id="infoMapsDiv" class="col-md-5 mt-2" style="height:500px">
+                    <button id="dibujarPoligonoBtn" type="button" class="btn btn-info col-md-12" onclick="registrarTerreno.dibujarPoligono()">Dibujar polígono</button>
+                    <button id="borrarPoligonoBtn" type="button" class="btn btn-warning col-md-12" onclick="registrarTerreno.borrarPoligono()" style="display:none">Borrar polígono</button>
+
+                    <hr />
+
+                    <div class=col-md-12>
+                        <label>Nombre:</label>
+                        <input type="text" id="nombreTerrenoTxt" class="form-control" maxlength="100" placeholder="Nombre del terreno"/>
+                    </div>
+
+                    <hr />
+                    <div class="col-md-12">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <label>Área: </label> <label id="areaPoligonoLbl"></label>
+                            </div>
+                            <div class="list-group-item">
+                                <label>Perimetro: </label> <label id="perimetroPoligonoLbl"></label>
+                            </div>
+                            <div class="list-group-item">
+                                <label>Ocupación: 0%</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr />
+                    <button id="registrarPoligonoBtn" type="button" class="btn btn-primary col-md-12" onclick="registrarTerreno.registrarPoligono()">Registrar</button>
+                    <a href="/terreno/seguimiento" type="button" class="btn btn-default col-md-12 mt-2" >Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD9r4hThCDftrhrN9z0CYSf_w0-ysTt_8&libraries=drawing&callback=registrarTerreno.init" async defer></script>
+    <script src="{% static 'terreno/js/registrar.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'general/css/project-style.css' %}">
+    <script type="text/javascript" src="{% static 'general/js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'general/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'general/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css'
+          integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}"/>
+    {% block css %}{% endblock %}
+</head>
+<body style="background-color: rgba(1, 82, 73, 0.6)">
+<nav class="navbar navbar-expand-sm navbar-dark primary_3">
+    <div class="container">
+        <div class="navbar-collapse collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item hvr-underline-from-center nav-padding text-center">
+
+                </li>
+            </ul>
+            <div class="nav-item dropdown user_menu text-right">
+            </div>
+        </div>
+    </div>
+</nav>
+<div id="contenido">
+    <div class="content-wrapper" id="wrapper">
+        <div class="content mt-2" id="content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <div id="encabezado" action="{% url 'usuario_perfil' %}"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-success card-outline central-height-back" id="card-content">
+                            <div class="card-body box-profile" id="content">
+
+                                {% block content %}{% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer class="fixed-bottom">{% block footer %}{% endblock %}</footer>
+{% block scripts %}{% endblock %}
+<script>
+    $(function () {
+        $.get("/usuario/perfil", function (data) {
+            $("#encabezado").html(data);
+        });
+    })
+</script>
+</body>
+</html>

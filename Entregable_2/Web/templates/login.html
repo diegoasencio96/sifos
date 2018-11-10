@@ -1,0 +1,137 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SIFO</title>
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'general/css/project-style.css' %}">
+    <script type="text/javascript" src="{% static 'general/js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'general/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'general/js/sweetalert.js' %}"></script>
+    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}" />
+    <link href="{% static 'signin.css' %}" rel="stylesheet">
+</head>
+<body class="text-center background-style">
+<div class="container">
+    <div class="row justify-content-center height-content">
+        <div class="col-xs-8 col-sm-9 col-md-7 col-lg-5 bg-gradient align-self-center">
+            <div>
+                <img class="img-responsive mt-5" src="{%  static 'general/img/logoSIFO.png' %}" alt="" width="385" height="318" />
+            </div>
+            <div class="row">
+                <div class="col-sm-9 col-md-10 m-auto">
+                    <div class="row justify-content-center"> </div>
+                    <div>
+                        {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                        {% endfor %}
+                        <!-- Formulario de ingreso al sistema -->
+                         <form method="post" role="form">
+                            <div id="error-all"></div>
+                            <div class="dropdown-content animated fadeIn" id="login-elements">
+                                <div class="input-group mb-1">
+                                    <!-- dato Usuario -->
+                                    <input type="text" name="username" id="id_username" class="form-control" placeholder="Usuario" aria-label="Username"  autofocus="" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <!-- dato Contraseña -->
+                                    <input type="password" name="password" id="id_password" class="form-control " placeholder="Contraseña" aria-label="Username"  aria-describedby="basic-addon1"><div id="error-password"></div>
+                                </div>
+                            </div>
+                            {% csrf_token %}
+                            <!-- boton inicio de sesión -->
+                            <button class="btn btn-lg btn-danger  btn-block  mb-4" type="submit">Iniciar sesión</button>
+                        </form>
+
+                        <div class="row pt-3 background-footer">
+                            <div class="width-pass-section">
+                                <p class="mb-3 text-black float-left ml-4"">¿Olvidaste tu contraseña?</p>
+                                <!-- boton ventana popup recordar contraseña -->
+                                <p class="float-right" data-toggle="modal" data-target="#exampleModal" style="margin-right: 5%;"><a href="#" target="_self">Recordar contraseña</a></p>
+                            </div>
+                        </div>
+
+
+                        <!-- vntana popup recordar contraseña -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">¿Olvidaste tu contraseña?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>Ingresa tu correo electrónico para enviar tu contraseña:</p>
+                                  <input id="id_recordarCorreo" placeholder="ejemplo@correoelectrónico.com" required="" autofocus class="text-center form-control">
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <!-- boton envío a correo electrónico de contraseña -->
+                                <button id="sendBtn" type="button" onclick="sendMail()" class="btn btn-primary btn-danger">Enviar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function sendMail(){
+       $.ajax({
+        url: 'usuario/validate_email',
+        data: {
+          'email': $("#id_recordarCorreo").val()
+        },
+        dataType: 'json',
+        success: function (data) {
+
+          if (data.existe == 0) {
+            swal({
+              type: 'error',
+              title: 'Error...',
+              text: 'No existe un usuario con el correo electrónico ingresado.',
+              footer: ''
+            })
+          }
+          else{
+             swal({
+              type: 'success',
+              title: 'Genial...',
+              text: 'Se ha enviado su contraseña al correo electrónico ingresado.',
+              footer: ''
+            })
+          }
+        }
+      });
+ };
+</script>
+<!--<footer class="fixed-bottom">
+    <div class="row justify-content-start ">
+        <div class="col">
+            <p> &#8195
+                <a style="color: #ffffff" href="#">Términos y condiciones</a>&#8195
+                <a style="color: #ffffff" href="#">Acerca</a>&#8195
+                <a style="color: #ffffff" href="#">Patrocinadores</a>
+            </p>
+        </div>
+    </div>
+</footer>-->
+</body>
+</html>
+
+
+
