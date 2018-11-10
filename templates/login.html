@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'general/css/project-style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}" />
     <script type="text/javascript" src="{% static 'general/js/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'general/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'general/js/sweetalert.js' %}"></script>
-    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}" />
-    <link href="{% static 'signin.css' %}" rel="stylesheet">
+
 </head>
 <body class="text-center background-style">
 <div class="container">
@@ -38,11 +38,11 @@
                             <div class="dropdown-content animated fadeIn" id="login-elements">
                                 <div class="input-group mb-1">
                                     <!-- dato Usuario -->
-                                    <input type="text" name="username" id="id_username" class="form-control" placeholder="Usuario" aria-label="Username"  autofocus="" aria-describedby="basic-addon1">
+                                    <input required type="text" name="username" id="id_username" class="form-control" placeholder="Usuario" aria-label="Username"  autofocus="" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                     <!-- dato Contraseña -->
-                                    <input type="password" name="password" id="id_password" class="form-control " placeholder="Contraseña" aria-label="Username"  aria-describedby="basic-addon1"><div id="error-password"></div>
+                                    <input required type="password" name="password" id="id_password" class="form-control " placeholder="Contraseña" aria-label="Username"  aria-describedby="basic-addon1"><div id="error-password"></div>
                                 </div>
                             </div>
                             {% csrf_token %}

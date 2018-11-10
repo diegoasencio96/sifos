@@ -1,3 +1,7 @@
 from django.contrib import admin
+from import_export.admin import ImportExportActionModelAdmin
+from apps.usuario.models import *
 
-# Register your models here.
+@admin.register(Donador)
+class Donador(ImportExportActionModelAdmin):
+    pass
