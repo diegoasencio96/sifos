@@ -5,41 +5,47 @@
 {% block content %}
     <div class="pt-2 bd-callout bd-callout-info">
         <div class="card card-primary">
-            <div class="card-header">Selección de polígono</div>
+            <div class="card-header"><img class="img-responsive mt-1 float-left mr-2" src="{% static 'general/img/logoSIFO.png' %}" alt="" width="70" height=""/><p class="ml-4"><h2>Selección de polígono</h2></p></div>
 
             <div class="card-body row">
-                <div id="mapsDiv" class="col-md-7 mt-2" style="height:500px"></div>
+                <div id="mapsDiv" class="col-md-7 mt-2" style="height:500px; box-shadow: 0 0 6px 0px black; border-radius: 10px;"></div>
 
                 <!--Detalle del poligono seleccionado-->
-                <div id="infoMapsDiv" class="col-md-5 mt-2" style="height:500px">
-                    <button id="dibujarPoligonoBtn" type="button" class="btn btn-info col-md-12" onclick="registrarTerreno.dibujarPoligono()">Dibujar polígono</button>
-                    <button id="borrarPoligonoBtn" type="button" class="btn btn-warning col-md-12" onclick="registrarTerreno.borrarPoligono()" style="display:none">Borrar polígono</button>
+                <div id="infoMapsDiv" class="col-md-5 mt-2" style="height:500px;">
+                    <button id="dibujarPoligonoBtn" type="button" class="btn btn-info col-md-12" style="background-color: #117a8b;" onclick="registrarTerreno.dibujarPoligono()">
+                        <i class="fa fa-pencil mr-2" style="font-size:20px"></i>Dibujar polígono
+                    </button>
+                    <button id="borrarPoligonoBtn" type="button" class="btn btn-warning col-md-12" onclick="registrarTerreno.borrarPoligono()" style="display:none">
+                        <i class="fa fa-eraser mr-2" style="font-size:20px"></i><b>Borrar polígono</b>
+                    </button>
 
                     <hr />
 
                     <div class=col-md-12>
-                        <label>Nombre:</label>
+                        <label style="font-weight: bold;">Nombre:</label>
                         <input type="text" id="nombreTerrenoTxt" class="form-control" maxlength="100" placeholder="Nombre del terreno"/>
                     </div>
 
                     <hr />
                     <div class="col-md-12">
                         <div class="list-group">
-                            <div class="list-group-item">
-                                <label>Área: </label> <label id="areaPoligonoLbl"></label>
+                            <div class="list-group-item" style="background-color: #fbf8d4a6">
+                                <label style="font-weight: bold;">Área: </label> <label id="areaPoligonoLbl"></label>
                             </div>
-                            <div class="list-group-item">
-                                <label>Perimetro: </label> <label id="perimetroPoligonoLbl"></label>
+                            <div class="list-group-item" style="background-color: #fbf8d4a6">
+                                <label style="font-weight: bold;">Perimetro: </label> <label id="perimetroPoligonoLbl"></label>
                             </div>
-                            <div class="list-group-item">
-                                <label>Ocupación: 0%</label>
+                            <div class="list-group-item" style="background-color: #fbf8d4a6">
+                                <label style="font-weight: bold;">Ocupación: </label><label>0%</label>
                             </div>
                         </div>
                     </div>
                     
                     <hr />
-                    <button id="registrarPoligonoBtn" type="button" class="btn btn-primary col-md-12" onclick="registrarTerreno.registrarPoligono()">Registrar</button>
-                    <a href="/terreno/seguimiento" type="button" class="btn btn-default col-md-12 mt-2" >Cancelar</a>
+                    <button id="registrarPoligonoBtn" type="button" class="btn btn-danger col-md-12" onclick="registrarTerreno.registrarPoligono()">
+                        <i class="fa fa-check-square mr-1" style="font-size:15px"></i>Registrar
+                    </button>
+                        <a href="/terreno/seguimiento" type="button" class="btn btn-dark col-md-12 mt-2"><i class="fa fa-window-close mr-2" style="font-size:15px"></i>Cancelar</a>
                 </div>
             </div>
         </div>
