@@ -6,22 +6,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SIFO</title>
+    <title>SIFOS</title>
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'general/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'general/css/project-style.css' %}">
-    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFO.ico' %}" />
+    <link rel="icon" type="image/png" href="{% static 'general/img/iconoSIFOS.ico' %}" />
     <script type="text/javascript" src="{% static 'general/js/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'general/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'general/js/sweetalert.js' %}"></script>
-
+    <script type="text/javascript" src="http://www.youtube.com/player_api"></script>
 </head>
+<script>
+        function playVideo() {
+            var videoURL = $('#videoSifos').prop('src');
+            videoURL += "&autoplay=1";
+            $('#videoSifos').prop('src',videoURL);
+        }
+        function stopVideo() {
+            var videoURL = $('#videoSifos').prop('src');
+            videoURL = videoURL.replace("&autoplay=1", "");
+            $('#videoSifos').prop('src','');
+            $('#videoSifos').prop('src',videoURL);
+         }
+</script>
 <body class="text-center background-style">
 <div class="container">
     <div class="row justify-content-center height-content">
         <div class="col-xs-8 col-sm-9 col-md-7 col-lg-5 bg-gradient align-self-center">
             <div>
-                <img class="img-responsive mt-5" src="{%  static 'general/img/logoSIFO.png' %}" alt="" width="385" height="318" />
+                <img class="img-responsive mt-5" src="{%  static 'general/img/logoSIFOS.png' %}" alt="" width="385" height="318" />
             </div>
             <div class="row">
                 <div class="col-sm-9 col-md-10 m-auto">
@@ -54,13 +67,13 @@
                             <div class="width-pass-section">
                                 <p class="mb-3 text-black float-left ml-4"">¿Olvidaste tu contraseña?</p>
                                 <!-- boton ventana popup recordar contraseña -->
-                                <p class="float-right" data-toggle="modal" data-target="#exampleModal" style="margin-right: 5%;"><a href="#" target="_self">Recordar contraseña</a></p>
+                                <p class="float-right" data-toggle="modal" data-target="#passRemModal" style="margin-right: 5%;"><a href="#" target="_self">Recordar contraseña</a></p>
                             </div>
                         </div>
 
 
-                        <!-- vntana popup recordar contraseña -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- ventana popup recordar contraseña -->
+                        <div class="modal fade" id="passRemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -77,6 +90,28 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <!-- boton envío a correo electrónico de contraseña -->
                                 <button id="sendBtn" type="button" onclick="sendMail()" class="btn btn-primary btn-danger">Enviar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                    <!-- ventana popup video ¿Qué somos? -->
+                        <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onclick="stopVideo()">
+                          <div class="modal-dialog" role="document" style="max-width: 600px;">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">¿Qué somos?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stopVideo()">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="videoWrapper">
+                                    <iframe id="videoSifos" controls="0" width="560" height="315" src="https://www.youtube-nocookie.com/embed/U2iU6nQRKAg?rel=0&showinfo=1&hd=1" frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
                               </div>
                             </div>
                           </div>
@@ -145,17 +180,16 @@ function sendMail(){
       });
  };
 </script>
-<!--<footer class="fixed-bottom">
+<footer class="fixed-bottom mt-1" style="height: 25px">
     <div class="row justify-content-start ">
-        <div class="col">
-            <p> &#8195
-                <a style="color: #ffffff" href="#">Términos y condiciones</a>&#8195
-                <a style="color: #ffffff" href="#">Acerca</a>&#8195
-                <a style="color: #ffffff" href="#">Patrocinadores</a>
+        <div class="col background-footer">
+            <p class=""> &#8195
+                <a style="color: #000000" href="#">Contacto</a>&#8195
+                <a style="color: #000000" href="#" data-toggle="modal" data-target="#videoModal" onclick="playVideo()">¿Qué somos?</a>&#8195
             </p>
         </div>
     </div>
-</footer>-->
+</footer>
 </body>
 </html>
 
