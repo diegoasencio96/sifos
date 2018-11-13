@@ -27,19 +27,21 @@ def index(request):
         obj_valor_donacion=abc.valor_donacion
         obj_cant_donadores=abc.cant_donadores
 
-    context = {
-        "obj":obj,
-        "obj_nombre":obj_nombre,
-        "obj_coordenadas_puntos":obj_coordenadas_puntos,
-        "obj_area":obj_area,
-        "obj_perimetro":obj_perimetro,
-        "obj_tipo_patron":obj_tipo_patron,
-        "obj_municipio":obj_municipio,
-        "obj_fecha": obj_fecha,
-        "obj_especie": obj_especie,
-        "obj_valor_donacion": obj_valor_donacion,
-        "obj_cant_donadores": obj_cant_donadores
-    }
+    context = { }
+    if obj.exists():
+        context = {
+            "obj": obj,
+            "obj_nombre": obj_nombre,
+            "obj_coordenadas_puntos": obj_coordenadas_puntos,
+            "obj_area": obj_area,
+            "obj_perimetro": obj_perimetro,
+            "obj_tipo_patron": obj_tipo_patron,
+            "obj_municipio": obj_municipio,
+            "obj_fecha": obj_fecha,
+            "obj_especie": obj_especie,
+            "obj_valor_donacion": obj_valor_donacion,
+            "obj_cant_donadores": obj_cant_donadores
+        }
 
     return render(request, "terreno/index.html", context)
 
