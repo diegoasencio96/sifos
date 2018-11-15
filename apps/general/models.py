@@ -46,10 +46,6 @@ class EspecieMunicipio(models.Model):
     class Meta:
         db_table = 'general_especie_municipio'
 
-    def __str__(self):
-        return "{0}".format(self.nombre)
-
-
 # Create your models here.
 class TipoPatron(models.Model):
     nombre = models.CharField(max_length=50, blank=True, null=True)
