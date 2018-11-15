@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'storages',
     'apps.usuario',
     'apps.terreno',
     'apps.general',
@@ -77,6 +78,20 @@ WSGI_APPLICATION = 'SIFO.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+#if 'RDS_HOSTNAME' in os.environ:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#            'NAME': 'sifos',
+#            'USER': 'sifos',
+#            'PASSWORD': 'A12345678',
+#            'HOST': 'sifos.cbdlu9kyo2hp.us-east-2.rds.amazonaws.com',
+#            'PORT': '5432'
+#        }
+#    }
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
@@ -137,11 +152,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+# Amazon S3
+if DEBUG:
+  STATIC_URL = '/static/'
+  STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+else:
+  AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_BUCKET_NAME')
+  AWS_ACCESS_KEY_ID = os.getenv('AWS_S3_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY_ID = os.getenv('AWS_S3_SECRET_KEY')
+  AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+  
+  AWS_S3_OBJECT_PARAMETERS = { 'CacheControl': 'max-age=86400' }
 
-EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'AKIAJZHI3U53P2BDH56A'
-EMAIL_HOST_PASSWORD = 'AsUxAQY3GK54wt8hOFGg+kUIbB8vNiqhuRH8rVFcKHwi'
-EMAIL_USE_TLS = True
+  AWS_LOCATION = 'static'
+
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'code/static'),]
+
+  STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+  STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# Email
+EMAIL_HOST = os.getenv('AWS_EMAIL_HOST')
+EMAIL_PORT = os.getenv('AWS_EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('AWS_EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('AWS_EMAIL_PASSWORD')
+EMAIL_USE_TLS = os.getenv('AWS_EMAIL_USE_TLS')
