@@ -18,6 +18,8 @@ from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.core.mail import BadHeaderError, send_mail
+import random
+import string
 
 class LoginView(FormView):
     form_class = AuthenticationForm
@@ -63,12 +65,15 @@ def validate_email(request):
     return JsonResponse(data)
 
 
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+        return ''.join(random.choice(chars) for _ in range(size))
+
 def send_email(request):
     #Asigna una nueva contraseña para ser enviada al correo
     email_to = request.GET.get('email', None)
     print(email_to)
     usuario = User.objects.get(email=email_to)
-    new_pswrd = 'nuevo_pswrd'
+    new_pswrd = id_generator()
     usuario.set_password(new_pswrd)
     #update_session_auth_hash(request, usuario)
     usuario.save()
@@ -77,12 +82,12 @@ def send_email(request):
 
     subject = 'Recuperación de contraseña'
     message = 'Su nueva contraseña es: '+new_pswrd
-    from_email = 'obaquero@gmail.com'
+    from_email = 'obaquerog@gmail.com'
 
     #Envio de correo electrónico
     if subject and message and from_email:
         try:
-            send_mail(subject, message, from_email, [email_to])
+            send_mail(subject, message, from_email, ['obaquerog@gmail.com'])
             data = {
                 'error': "no",
                 'message': "Se envió una nueva contraseña al correo electrónico "+ email_to
@@ -100,3 +105,4 @@ def send_email(request):
             'message': "Por favor verifique el correo electrónico ingresado e intentelo nuevamente."
         }
         return JsonResponse(data)
+
