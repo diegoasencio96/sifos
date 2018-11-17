@@ -2,9 +2,12 @@ from django.db import models
 from apps.general.models import Municipio, TipoPatron, Especie, Robot
 from apps.financiacion.models import Donacion
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 # Create your models here.
 class Poligono(models.Model):
+    fecha = models.DateTimeField(default=timezone.now)
     nombre = models.CharField(max_length=200, blank=True, null=True)
     coordenadas_puntos = models.CharField(max_length=200, blank=True, null=True)
     area = models.FloatField(max_length=100, blank=True, null=True)
@@ -12,6 +15,7 @@ class Poligono(models.Model):
     tipo_patron = models.ForeignKey(TipoPatron, blank=False, null=False)
     municipio = models.ForeignKey(Municipio, blank=False, null=False)
     usuario = models.ForeignKey(User, blank=False, null=False)
+
 
     class Meta:
         db_table = 'terreno_poligono'
