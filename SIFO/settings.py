@@ -74,11 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SIFO.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 #if 'RDS_HOSTNAME' in os.environ:
