@@ -87,7 +87,7 @@ def send_email(request):
     #Envio de correo electrónico
     if subject and message and from_email:
         try:
-            send_mail(subject, message, from_email, ['obaquerog@gmail.com'])
+            send_mail(subject, message, from_email, [email_to])
             data = {
                 'error': "no",
                 'message': "Se envió una nueva contraseña al correo electrónico "+ email_to
