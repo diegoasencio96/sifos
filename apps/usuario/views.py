@@ -13,7 +13,7 @@ from django.views.generic import FormView, RedirectView
 # Authentication imports
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -27,7 +27,7 @@ class LoginView(FormView):
     success_url =  reverse_lazy("terreno_seguimiento")
 
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
         else:
             return super(LoginView, self).dispatch(request, *args, **kwargs)
