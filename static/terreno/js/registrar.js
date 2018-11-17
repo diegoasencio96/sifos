@@ -35,6 +35,12 @@ var registrarTerreno = function(){
                 }
             });
 
+            google.maps.Polygon.prototype.my_getBounds=function(){
+                var bounds = new google.maps.LatLngBounds()
+                this.getPath().forEach(function(element,index){bounds.extend(element)})
+                return bounds
+            }
+
             google.maps.event.addListener(registrarTerreno.gestorDibujo, 'polygoncomplete', function(poligono) {                                
                 registrarTerreno.poligono = poligono;
                 
@@ -73,7 +79,7 @@ var registrarTerreno = function(){
             }
         },
 
-        registrarPoligono: function(){
+        registrarPoligono: function(municipio){
             if (this.poligono == null){                
                 alert("Debe seleccionar un polígono que represente el terreno");
                 return;
@@ -83,13 +89,48 @@ var registrarTerreno = function(){
                 alert("Agregue el nombre del terreno");
                 return;
             }
+
+            var puntos = [];
+            var coordenadas = registrarTerreno.poligono.getPath().getArray();
+            for (var i = 0; i < coordenadas.length; i++){
+                puntos.push( [coordenadas[i].lat(), coordenadas[i].lng() ]);
+            }
             
             var data = {
                 points : registrarTerreno.poligono.getPath().getArray(),
-                name : nombre
-            };
-            
+                nombre : nombre,
+                municipio : municipio
+            };            
+        },
+
+        obtenerCiudadPorCentro : function(){
+            if (this.poligono != null){                
+                var centro = this.poligono.my_getBounds().getCenter();
+                var ubicacion = {
+                    lat : centro.lat(),
+                    lng : centro.lng()
+                }
+                var geocoder = new google.maps.Geocoder;
+                geocoder.geocode({'location': ubicacion}, function(results, status) {
+                    if (status === 'OK') { 
+                        for(var i = 0; i < results.length; i ++) {
+                            if ($.inArray('locality', results[i].types) != -1 || $.inArray('administrative_area_level_2', results[i].types) != -1){
+                                var municipio = results[i].formatted_address.split(",")[0];  
+                                registrarTerreno.registrarPoligono(municipio);
+                                break;
+                            }
+                        }
+                        window.alert('No fue posible obtener el municipio seleccionado');
+                    } else {
+                        window.alert('No fue posible obtener el municipio seleccionado');
+                    }
+                });
+            }
         }
+
+
+        
     }
 }();
+
 
